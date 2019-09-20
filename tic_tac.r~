@@ -1,0 +1,30 @@
+#!/usr/bin/Rscript
+one_player <- function() {
+  my_matrix <- matrix(data=5, nr=3, nc=3)
+  return(my_matrix)
+}
+
+two_players <- function() {
+  my_matrix <- matrix(data=8, nr=3, nc=3)
+  return(my_matrix)
+}
+
+# This is code to play TicTacToe with 1 o 2 players
+# program start here
+cat("Welcome to TicTacToe in R Language\n")
+cat("Please choose 1 player or 2 players\n")
+players <- readLines("stdin", 1)
+cat(sprintf("You choose: %s\n", players))
+while (players > 2)
+{
+  cat("Choose only 1 or 2 players")
+  players <- readLines("stdin", 1)
+  cat(sprintf("You choose, %s\n", players))
+}
+if (players == 1) {
+  a = one_player()
+  print(a)
+} else {
+  a = two_players()
+  print(a)
+}
