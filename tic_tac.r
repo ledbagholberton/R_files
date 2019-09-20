@@ -59,21 +59,77 @@ winner <-function(player, a, b) {
   if (max(my_matrix[a, ]) == min(my_matrix[a, ]))
   {
     cat("TRIQUI\n")
+    if (aut == 0){
+       cat(sprintf("THE WINNER IS PLAYER %s", player))
+    }
+    else
+    {
+       if(player == 2)
+       {
+         cat(" I WON ")
+       }
+       else
+       {
+         cat("  YOU ARE THE WINNER  ")
+       }
+    }
     flag <<- 1
   }
   else if (max(my_matrix[ ,b]) == min(my_matrix[ ,b]))
   {
     cat("TRIQUI\n")
+    if (aut == 0){
+       cat(sprintf("THE WINNER IS PLAYER %s", player))
+    }
+    else
+    {
+       if(player == 2)
+       {
+         cat(" I WON ")
+       }
+       else
+       {
+         cat("  YOU ARE THE WINNER  ")
+       }
+    }
     flag <<- 1
   }
   else if ((max(diag(my_matrix)) == min(diag(my_matrix)) & sum(diag(my_matrix)) != 0))
   {
     cat("TRIQUI\n")
+    if (aut == 0){
+       cat(sprintf("THE WINNER IS PLAYER %s", player))
+    }
+    else
+    {
+       if(player == 2)
+       {
+         cat(" I WON ")
+       }
+       else
+       {
+         cat("  YOU ARE THE WINNER  ")
+       }
+    }
     flag <<- 1
   }
   else if (max(second) == min(second) & sum(second) != 0)
   {
     cat("TRIQUI\n")
+    if (aut == 0){
+       cat(sprintf("THE WINNER IS PLAYER %s", player))
+    }
+    else
+    {
+       if(player == 2)
+       {
+         cat(" I WON ")
+       }
+       else
+       {
+         cat("  YOU ARE THE WINNER  ")
+       }
+    }
     flag <<- 1
   }
   else
@@ -105,15 +161,13 @@ flag <- "global"
 flag <- 0
 while (players > 2)
 {
-  cat("Choose only 1 or 2 players")
+  cat("Choose only 1 or 2 players\n")
   players <- readLines("stdin", 1)
   cat(sprintf("You choose, %s\n", players))
 }
 if (players == 1) {
   a = two_players()
-  print(a)
 } else {
   aut <- 0
   a = two_players()
-  print(a)
 }
