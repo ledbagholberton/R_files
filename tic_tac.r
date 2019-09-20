@@ -1,8 +1,4 @@
 #!/usr/bin/Rscript
-one_player <- function() {
-  my_matrix <- matrix(data=5, nr=3, nc=3)
-  return(my_matrix)
-}
 
 two_players <- function() {
   player = 2
@@ -21,11 +17,21 @@ two_players <- function() {
 
 
 move <- function(player) {
-  cat(sprintf("Player %s: Your move (format - row , column - )", player))
-  move <- readLines("stdin", 1)
-  print(move)
-  a = as.integer(substr(move, start=1, stop=1))
-  b = as.integer(substr(move, start=3, stop=3))
+  cat(sprintf("Player %s: Your move (format - row , column - )\n", player))
+  if (player == 1){
+    move <- readLines("stdin", 1)
+    print(move)
+    a = as.integer(substr(move, start=1, stop=1))
+    b = as.integer(substr(move, start=3, stop=3))
+  } else if (player == 2 & aut == 0) {
+    move <- readLines("stdin", 1)
+    print(move)
+    a = as.integer(substr(move, start=1, stop=1))
+    b = as.integer(substr(move, start=3, stop=3))
+  } else {
+    a = as.integer(sample(1:3, 1, replace=F))
+    b = as.integer(sample(1:3, 1, replace=F))
+  }
   isbusy = busy(a, b)
   if (isbusy == TRUE) {
     move(player)
@@ -39,7 +45,6 @@ move <- function(player) {
 
 busy <- function(a, b) {
   pos <- my_matrix[a, b]
-  cat(sprintf("Este es pos %s\n", pos))
   if (pos != 0) {
     cat("Your move is already fill\n")
     return(TRUE)
@@ -90,6 +95,8 @@ winner <-function(player, a, b) {
 # program start here
 cat("Welcome to TicTacToe in R Language\n")
 cat("Please choose 1 player or 2 players\n")
+aut <- "global"
+aut <- 1
 players <- readLines("stdin", 1)
 cat(sprintf("You choose: %s\n", players))
 my_matrix <- "global"
@@ -103,9 +110,10 @@ while (players > 2)
   cat(sprintf("You choose, %s\n", players))
 }
 if (players == 1) {
-  a = one_player()
+  a = two_players()
   print(a)
 } else {
+  aut <- 0
   a = two_players()
   print(a)
 }
