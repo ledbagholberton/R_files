@@ -6,7 +6,6 @@ one_player <- function() {
 
 two_players <- function() {
   player = 2
-  flag = 0
   while (flag != 1) {
     print(my_matrix)
     if (player == 1){
@@ -17,6 +16,7 @@ two_players <- function() {
       move(player)
     }
    }
+  cat("THANKS FOR PLAY WITH US\n")
 }
 
 
@@ -50,18 +50,40 @@ busy <- function(a, b) {
 
 
 winner <-function(player, a, b) {
-  if (max(my_matrix[a, ]) == min(my_matrix[a, ])) {
-    cat("TRIQUI")
-  } else {
-    if (max(my_matrix[ ,b]) == min(my_matrix[ ,b])) {
-       cat("TRIQUI")
-       }
-       else {
-         move(player)
-       }
+  second <- c(my_matrix[1,3], my_matrix[2,2], my_matrix[3,1])
+  if (max(my_matrix[a, ]) == min(my_matrix[a, ]))
+  {
+    cat("TRIQUI\n")
+    flag <<- 1
+  }
+  else if (max(my_matrix[ ,b]) == min(my_matrix[ ,b]))
+  {
+    cat("TRIQUI\n")
+    flag <<- 1
+  }
+  else if ((max(diag(my_matrix)) == min(diag(my_matrix)) & sum(diag(my_matrix)) != 0))
+  {
+    cat("TRIQUI\n")
+    flag <<- 1
+  }
+  else if (max(second) == min(second) & sum(second) != 0)
+  {
+    cat("TRIQUI\n")
+    flag <<- 1
+  }
+  else
+  {
+    if (min(my_matrix) != 0)
+    {
+      cat("NO WINNERS TRY AGAIN\n")
+    }
+    else
+    {
+      flag <<- 0
+      return()
+    }
   }
 }
-
 
 
 # This is code to play TicTacToe with 1 o 2 players
@@ -72,6 +94,8 @@ players <- readLines("stdin", 1)
 cat(sprintf("You choose: %s\n", players))
 my_matrix <- "global"
 my_matrix <- matrix(data=0, nr=3, nc=3)
+flag <- "global"
+flag <- 0
 while (players > 2)
 {
   cat("Choose only 1 or 2 players")
