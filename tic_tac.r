@@ -46,7 +46,9 @@ move <- function(player) {
 busy <- function(a, b) {
   pos <- my_matrix[a, b]
   if (pos != 0) {
-    cat("Your move is already fill\n")
+    if (aut == 1) {
+      cat("Your move is already fill\n")
+    }
     return(TRUE)
   } else {
     return(FALSE)
@@ -137,6 +139,7 @@ winner <-function(player, a, b) {
     if (min(my_matrix) != 0)
     {
       cat("NO WINNERS TRY AGAIN\n")
+      flag <<- 0
     }
     else
     {
